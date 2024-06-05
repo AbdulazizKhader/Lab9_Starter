@@ -125,3 +125,20 @@ form.addEventListener('submit', e => {
 let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
 //global errors and 3rd party tracking
+let globalErr = document.getElementById('global-err');
+globalErr.addEventListener('click', () => {
+    throw new Error("This caused a global error becauase you asked for it.")
+});
+
+window.onerror = (a, b, c, d, e) => {
+    console.log(`message: ${a}`);
+    console.log(`source: ${b}`);
+    console.log(`lineno: ${c}`);
+    console.log(`colno: ${d}`);
+    console.log(`error: ${e}`);
+  
+    return true;
+};
+
+TrackJS.track('Testing TrackJS!');
+                        
